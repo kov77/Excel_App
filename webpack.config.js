@@ -43,6 +43,7 @@ module.exports = {
     port: 3000,
     hot: isDev,
   },
+  target: 'web',
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
@@ -70,11 +71,7 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              hmr: isDev,
-              reloadAll: true,
-            },
+            loader: !isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           },
           'css-loader',
           'sass-loader',
