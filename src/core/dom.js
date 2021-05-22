@@ -39,9 +39,25 @@ class Dom {
 
     return this
   }
+  get data() {
+    return this.$el.dataset
+  }
+  findAll(selector) {
+    return document.querySelectorAll(selector)
+  }
+  closest(selector) {
+    return $(this.$el.closest(selector))
+  }
+  css(styles = {}) {
+    Object.keys(styles).forEach((key => {
+      this.$el.style[key] = styles[key]
+    }))
+  }
+  getCords() {
+    return this.$el.getBoundingClientRect()
+  }
 }
 
-// event.target
 export function $(selector) {
   return new Dom(selector)
 }
